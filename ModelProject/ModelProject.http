@@ -1,0 +1,103 @@
+@ModelProject_HostAddress = http://localhost:5069
+
+### List work orders (paginated, filterable, sortable)
+GET {{ModelProject_HostAddress}}/api/workorders?page=1&pageSize=20&sortBy=createdAt&sortDescending=true
+Accept: application/json
+
+###
+
+### List work orders filtered by facility + status (matches the SQL Server challenge query)
+GET {{ModelProject_HostAddress}}/api/workorders?facilityId=1&status=New
+Accept: application/json
+
+###
+
+### Get a single work order
+GET {{ModelProject_HostAddress}}/api/workorders/1
+Accept: application/json
+
+###
+
+### Create a work order
+POST {{ModelProject_HostAddress}}/api/workorders
+Content-Type: application/json
+
+{
+  "assetId": 1,
+  "title": "Compressor pressure drop",
+  "description": "Pressure drops below threshold after 20 minutes of operation.",
+  "priority": "High",
+  "createdBy": "demo.user"
+}
+
+###
+
+### Update a work order (RowVersion must match the value most recently returned by the API)
+PUT {{ModelProject_HostAddress}}/api/workorders/1
+Content-Type: application/json
+
+{
+  "title": "Compressor pressure drop - revised",
+  "description": "Pressure drops below threshold after 15 minutes of operation.",
+  "priority": "Critical",
+  "rowVersion": "AAAAAAAAB9E="
+}
+
+###
+
+### Assign a technician (New -> Assigned)
+PUT {{ModelProject_HostAddress}}/api/workorders/1/assign
+Content-Type: application/json
+
+{
+  "technicianId": 1,
+  "changedBy": "demo.user",
+  "rowVersion": "AAAAAAAAB9E="
+}
+
+###
+
+### Change status (Assigned -> InProgress)
+PUT {{ModelProject_HostAddress}}/api/workorders/1/status
+Content-Type: application/json
+
+{
+  "newStatus": "InProgress",
+  "changedBy": "demo.user",
+  "comments": "Technician started work.",
+  "rowVersion": "AAAAAAAAB9E="
+}
+
+###
+
+### View status history
+GET {{ModelProject_HostAddress}}/api/workorders/1/history
+Accept: application/json
+
+###
+
+### Delete a work order
+DELETE {{ModelProject_HostAddress}}/api/workorders/1
+
+###
+
+### Lookup data for dropdowns
+GET {{ModelProject_HostAddress}}/api/customers
+Accept: application/json
+
+###
+
+GET {{ModelProject_HostAddress}}/api/facilities
+Accept: application/json
+
+###
+
+GET {{ModelProject_HostAddress}}/api/assets?facilityId=1
+Accept: application/json
+
+###
+
+GET {{ModelProject_HostAddress}}/api/technicians
+Accept: application/json
+
+###
