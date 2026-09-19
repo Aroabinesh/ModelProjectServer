@@ -29,6 +29,9 @@ public class WorkOrderConfiguration : IEntityTypeConfiguration<WorkOrder>
             .HasMaxLength(20)
             .IsRequired();
 
+        builder.Property(w => w.ScheduledStartDate).HasColumnType("date");
+        builder.Property(w => w.ScheduledEndDate).HasColumnType("date");
+
         builder.Property(w => w.CreatedAt).IsRequired();
         builder.Property(w => w.UpdatedAt).IsRequired();
 

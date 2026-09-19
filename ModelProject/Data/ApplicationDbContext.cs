@@ -16,6 +16,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Technician> Technicians => Set<Technician>();
     public DbSet<WorkOrder> WorkOrders => Set<WorkOrder>();
     public DbSet<WorkOrderHistory> WorkOrderHistories => Set<WorkOrderHistory>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,6 +26,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new TechnicianConfiguration());
         modelBuilder.ApplyConfiguration(new WorkOrderConfiguration());
         modelBuilder.ApplyConfiguration(new WorkOrderHistoryConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
 
         SeedData.Seed(modelBuilder);
     }

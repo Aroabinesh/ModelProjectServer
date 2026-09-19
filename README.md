@@ -53,11 +53,13 @@ ModelProject.sln
 3. **Run the API:**
 
    ```bash
-   dotnet run --project ModelProject
+   dotnet watch run --project ModelProject
    ```
 
    Swagger UI is available at `/swagger` in the Development environment and documents every
-   endpoint, request/response shape, and status code.
+   endpoint, request/response shape, and status code. `dotnet watch run` also opens it in your
+   browser automatically and rebuilds on file changes; use plain `dotnet run` if you don't want
+   either behavior.
 
 4. **Run the tests:**
 

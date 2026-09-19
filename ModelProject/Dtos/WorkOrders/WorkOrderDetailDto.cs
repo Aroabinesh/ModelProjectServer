@@ -18,6 +18,8 @@ public class WorkOrderDetailDto
 
     public int? AssignedTechnicianId { get; init; }
     public string? AssignedTechnicianName { get; init; }
+    public DateTime? ScheduledStartDate { get; init; }
+    public DateTime? ScheduledEndDate { get; init; }
 
     public DateTime CreatedAt { get; init; }
     public DateTime UpdatedAt { get; init; }

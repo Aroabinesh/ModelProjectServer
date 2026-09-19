@@ -34,6 +34,7 @@ public class ExceptionHandlingMiddleware
         var (statusCode, title) = exception switch
         {
             NotFoundException => (HttpStatusCode.NotFound, "Resource not found"),
+            UnauthorizedException => (HttpStatusCode.Unauthorized, "Unauthorized"),
             InvalidStatusTransitionException => (HttpStatusCode.Conflict, "Invalid status transition"),
             ConcurrencyConflictException => (HttpStatusCode.Conflict, "Concurrency conflict"),
             BusinessRuleException => (HttpStatusCode.BadRequest, "Business rule violation"),

@@ -38,6 +38,8 @@ public class WorkOrderService : IWorkOrderService
         CustomerName = w.Facility!.Customer!.Name,
         AssignedTechnicianId = w.AssignedTechnicianId,
         AssignedTechnicianName = w.AssignedTechnician == null ? null : w.AssignedTechnician.Name,
+        ScheduledStartDate = w.ScheduledStartDate,
+        ScheduledEndDate = w.ScheduledEndDate,
         CreatedAt = w.CreatedAt,
         UpdatedAt = w.UpdatedAt,
         RowVersion = Convert.ToBase64String(w.RowVersion)
@@ -209,10 +211,18 @@ public class WorkOrderService : IWorkOrderService
         if (!technicianExists)
             throw new NotFoundException($"Active technician {dto.TechnicianId} was not found.");
 
+        if (dto.ScheduledStartDate.HasValue && dto.ScheduledEndDate.HasValue
+            && dto.ScheduledEndDate.Value.Date < dto.ScheduledStartDate.Value.Date)
+        {
+            throw new BusinessRuleException("Scheduled end date cannot be before the scheduled start date.");
+        }
+
         ApplyRowVersion(workOrder, dto.RowVersion);
 
         var previousStatus = workOrder.Status;
         workOrder.AssignedTechnicianId = dto.TechnicianId;
+        workOrder.ScheduledStartDate = dto.ScheduledStartDate;
+        workOrder.ScheduledEndDate = dto.ScheduledEndDate;
         workOrder.UpdatedAt = DateTime.UtcNow;
 
         // Assigning a technician to a brand-new work order is what moves it into the

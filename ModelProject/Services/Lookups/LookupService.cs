@@ -63,17 +63,4 @@ public class LookupService : ILookupService
             })
             .ToListAsync(cancellationToken);
     }
-
-    public async Task<IReadOnlyList<TechnicianDto>> GetTechniciansAsync(bool activeOnly, CancellationToken cancellationToken)
-    {
-        var technicians = _db.Technicians.AsNoTracking().AsQueryable();
-
-        if (activeOnly)
-            technicians = technicians.Where(t => t.IsActive);
-
-        return await technicians
-            .OrderBy(t => t.Name)
-            .Select(t => new TechnicianDto { Id = t.Id, Name = t.Name, Email = t.Email, IsActive = t.IsActive })
-            .ToListAsync(cancellationToken);
-    }
 }

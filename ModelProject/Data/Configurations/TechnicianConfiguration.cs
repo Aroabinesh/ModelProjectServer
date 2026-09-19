@@ -19,6 +19,13 @@ public class TechnicianConfiguration : IEntityTypeConfiguration<Technician>
             .IsRequired()
             .HasMaxLength(256);
 
+        builder.Property(t => t.StartDate)
+            .IsRequired()
+            .HasColumnType("date");
+
+        builder.Property(t => t.EndDate)
+            .HasColumnType("date");
+
         builder.HasIndex(t => t.Email).IsUnique();
     }
 }

@@ -1,9 +1,16 @@
+using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ModelProject.Common.Middleware;
+using ModelProject.Common.Security;
 using ModelProject.Data;
+using ModelProject.Services.Auth;
 using ModelProject.Services.Lookups;
+using ModelProject.Services.Technicians;
 using ModelProject.Services.WorkOrders;
 using Serilog;
 
@@ -55,6 +62,23 @@ try
             Version = "v1",
             Description = "REST API for managing customers, facilities, assets, technicians, and work orders."
         });
+
+        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+            Name = "Authorization",
+            Type = SecuritySchemeType.Http,
+            Scheme = "bearer",
+            BearerFormat = "JWT",
+            In = ParameterLocation.Header,
+            Description = "Paste the JWT access token returned by POST /api/auth/login."
+        });
+        options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" } },
+                Array.Empty<string>()
+            }
+        });
     });
 
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -62,8 +86,39 @@ try
             builder.Configuration.GetConnectionString("DefaultConnection"),
             sqlOptions => sqlOptions.EnableRetryOnFailure()));
 
+    builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+    var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>()
+        ?? throw new InvalidOperationException("Jwt configuration section is missing.");
+
+    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidIssuer = jwtSettings.Issuer,
+                ValidateAudience = true,
+                ValidAudience = jwtSettings.Audience,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero
+            };
+        });
+
+    // Every endpoint requires a valid JWT unless explicitly marked [AllowAnonymous] (e.g. login).
+    builder.Services.AddAuthorization(options =>
+    {
+        options.FallbackPolicy = new AuthorizationPolicyBuilder()
+            .RequireAuthenticatedUser()
+            .Build();
+    });
+
     builder.Services.AddScoped<IWorkOrderService, WorkOrderService>();
     builder.Services.AddScoped<ILookupService, LookupService>();
+    builder.Services.AddScoped<ITechnicianService, TechnicianService>();
+    builder.Services.AddScoped<IAuthService, AuthService>();
+    builder.Services.AddScoped<ITokenService, TokenService>();
 
     var app = builder.Build();
 
@@ -77,12 +132,14 @@ try
     {
         app.UseSwagger();
         app.UseSwaggerUI();
+        app.MapGet("/", () => Results.Redirect("/swagger"));
     }
 
     app.UseHttpsRedirection();
 
     app.UseCors(CorsPolicyName);
 
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.MapControllers();

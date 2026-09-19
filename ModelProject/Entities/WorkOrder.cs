@@ -22,6 +22,10 @@ public class WorkOrder
 
     public int? AssignedTechnicianId { get; set; }
 
+    // The scheduled window for the current technician assignment, set on assign/reassign.
+    public DateTime? ScheduledStartDate { get; set; }
+    public DateTime? ScheduledEndDate { get; set; }
+
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 

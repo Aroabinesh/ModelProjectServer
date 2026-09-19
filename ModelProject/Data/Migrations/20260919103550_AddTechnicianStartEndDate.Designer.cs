@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModelProject.Data;
 
@@ -11,9 +12,11 @@ using ModelProject.Data;
 namespace ModelProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260919103550_AddTechnicianStartEndDate")]
+    partial class AddTechnicianStartEndDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,51 +248,6 @@ namespace ModelProject.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ModelProject.Entities.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastLoginAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Username")
-                        .IsUnique();
-
-                    b.ToTable("Users", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            PasswordHash = "$2a$11$LDw7K2LrKIm8TYaksb2cHO5e9NB/6l2QBTuOOaLQ2ez9tWvhj9Ux6",
-                            Username = "admin"
-                        });
-                });
-
             modelBuilder.Entity("ModelProject.Entities.WorkOrder", b =>
                 {
                     b.Property<int>("Id")
@@ -325,12 +283,6 @@ namespace ModelProject.Data.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
-
-                    b.Property<DateTime?>("ScheduledEndDate")
-                        .HasColumnType("date");
-
-                    b.Property<DateTime?>("ScheduledStartDate")
-                        .HasColumnType("date");
 
                     b.Property<string>("Status")
                         .IsRequired()

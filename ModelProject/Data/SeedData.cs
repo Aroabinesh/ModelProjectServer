@@ -28,10 +28,24 @@ public static class SeedData
             new Asset { Id = 4, FacilityId = 3, AssetCode = "FL-3001", Name = "Forklift 7", AssetType = "Vehicle", Status = AssetStatus.Active }
         );
 
+        // Password is "admin123" (see login screen demo credentials), hashed with BCrypt ahead
+        // of time so the migration stays deterministic instead of re-hashing (and re-salting)
+        // on every migration regeneration.
+        modelBuilder.Entity<User>().HasData(
+            new User
+            {
+                Id = 1,
+                Username = "admin",
+                PasswordHash = "$2a$11$LDw7K2LrKIm8TYaksb2cHO5e9NB/6l2QBTuOOaLQ2ez9tWvhj9Ux6",
+                IsActive = true,
+                CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            }
+        );
+
         modelBuilder.Entity<Technician>().HasData(
-            new Technician { Id = 1, Name = "Arun Kumar", Email = "arun.kumar@example.com", IsActive = true },
-            new Technician { Id = 2, Name = "Priya Sharma", Email = "priya.sharma@example.com", IsActive = true },
-            new Technician { Id = 3, Name = "Ravi Verma", Email = "ravi.verma@example.com", IsActive = true }
+            new Technician { Id = 1, Name = "Arun Kumar", Email = "arun.kumar@example.com", IsActive = true, StartDate = new DateTime(2024, 1, 15) },
+            new Technician { Id = 2, Name = "Priya Sharma", Email = "priya.sharma@example.com", IsActive = true, StartDate = new DateTime(2024, 3, 1) },
+            new Technician { Id = 3, Name = "Ravi Verma", Email = "ravi.verma@example.com", IsActive = true, StartDate = new DateTime(2025, 6, 10) }
         );
 
         var seedDate = new DateTime(2026, 1, 1, 9, 0, 0, DateTimeKind.Utc);
