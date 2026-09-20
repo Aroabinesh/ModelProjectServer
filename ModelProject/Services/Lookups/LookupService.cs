@@ -1,6 +1,9 @@
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using ModelProject.Data;
+using ModelProject.Dtos.Common;
 using ModelProject.Dtos.Lookups;
+using ModelProject.Entities;
 
 namespace ModelProject.Services.Lookups;
 
@@ -42,15 +45,32 @@ public class LookupService : ILookupService
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<IReadOnlyList<AssetDto>> GetAssetsAsync(int? facilityId, CancellationToken cancellationToken)
+    public async Task<PagedResult<AssetDto>> GetAssetsAsync(AssetQueryParameters query, CancellationToken cancellationToken)
     {
         var assets = _db.Assets.AsNoTracking().AsQueryable();
 
-        if (facilityId.HasValue)
-            assets = assets.Where(a => a.FacilityId == facilityId.Value);
+        if (!string.IsNullOrWhiteSpace(query.Search))
+        {
+            var term = query.Search.Trim();
+            assets = assets.Where(a =>
+                EF.Functions.Like(a.AssetCode, $"%{term}%") || EF.Functions.Like(a.Name, $"%{term}%"));
+        }
 
-        return await assets
-            .OrderBy(a => a.AssetCode)
+        if (query.FacilityId.HasValue)
+            assets = assets.Where(a => a.FacilityId == query.FacilityId.Value);
+
+        if (query.Status.HasValue)
+            assets = assets.Where(a => a.Status == query.Status.Value);
+
+        assets = ApplySort(assets, query.SortBy, query.SortDescending);
+
+        // Two indexed queries (count + page), same pattern as WorkOrders: required to stay
+        // fast once the table holds 100k+ rows instead of loading everything into memory.
+        var totalCount = await assets.LongCountAsync(cancellationToken);
+
+        var items = await assets
+            .Skip((query.Page - 1) * query.PageSize)
+            .Take(query.PageSize)
             .Select(a => new AssetDto
             {
                 Id = a.Id,
@@ -62,5 +82,31 @@ public class LookupService : ILookupService
                 Status = a.Status.ToString()
             })
             .ToListAsync(cancellationToken);
+
+        return new PagedResult<AssetDto>
+        {
+            Items = items,
+            Page = query.Page,
+            PageSize = query.PageSize,
+            TotalCount = totalCount
+        };
+    }
+
+    private static IQueryable<Asset> ApplySort(IQueryable<Asset> query, string sortBy, bool descending)
+    {
+        // Whitelisted switch rather than a dynamic "OrderBy(sortBy)" string, same rationale as
+        // WorkOrderService.ApplySort: keeps sorting safe from injection and every accepted
+        // value maps to an indexed (or otherwise cheap) column.
+        Expression<Func<Asset, object>> keySelector = sortBy.Trim().ToLowerInvariant() switch
+        {
+            "name" => a => a.Name,
+            "status" => a => a.Status,
+            "facilityid" => a => a.FacilityId,
+            _ => a => a.AssetCode
+        };
+
+        return descending
+            ? query.OrderByDescending(keySelector).ThenByDescending(a => a.Id)
+            : query.OrderBy(keySelector).ThenBy(a => a.Id);
     }
 }

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ModelProject.Dtos.Common;
 using ModelProject.Dtos.Lookups;
 using ModelProject.Services.Lookups;
 
@@ -16,10 +17,10 @@ public class AssetsController : ControllerBase
         _lookupService = lookupService;
     }
 
-    /// <summary>List assets, optionally filtered by facility. Backs the "asset" picker on the create/edit form.</summary>
+    /// <summary>List assets with server-side search, filtering, sorting, and pagination. Backs the "asset" picker on the create/edit form.</summary>
     [HttpGet]
-    [ProducesResponseType(typeof(IReadOnlyList<AssetDto>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IReadOnlyList<AssetDto>>> GetAll(
-        [FromQuery] int? facilityId, CancellationToken cancellationToken)
-        => Ok(await _lookupService.GetAssetsAsync(facilityId, cancellationToken));
+    [ProducesResponseType(typeof(PagedResult<AssetDto>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<PagedResult<AssetDto>>> GetAll(
+        [FromQuery] AssetQueryParameters query, CancellationToken cancellationToken)
+        => Ok(await _lookupService.GetAssetsAsync(query, cancellationToken));
 }

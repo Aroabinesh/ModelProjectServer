@@ -122,6 +122,22 @@ try
 
     var app = builder.Build();
 
+    // `dotnet run -- seed-bulk [count]` bulk-inserts `count` (default 100000) Assets and the
+    // same number of linked WorkOrders via SqlBulkCopy, for load-testing pagination at scale.
+    // Exits immediately after instead of starting the web server.
+    if (args.Contains("seed-bulk"))
+    {
+        var countArg = args.SkipWhile(a => a != "seed-bulk").Skip(1).FirstOrDefault();
+        var count = int.TryParse(countArg, out var parsed) ? parsed : 100_000;
+
+        using var scope = app.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        await BulkDataSeeder.RunAsync(db, count);
+
+        Log.Information("Bulk-seeded {Count} assets and {Count} linked work orders.", count, count);
+        return;
+    }
+
     // First in the pipeline so it catches exceptions raised anywhere downstream, including
     // other middleware.
     app.UseMiddleware<ExceptionHandlingMiddleware>();

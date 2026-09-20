@@ -1,0 +1,347 @@
+[13:11:38 INF] Now listening on: https://localhost:5001
+[13:11:38 INF] Application started. Press Ctrl+C to shut down.
+[13:11:38 INF] Hosting environment: Production
+[13:11:38 INF] Content root path: D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject
+[13:12:09 INF] User 1 logged in.
+[13:12:09 INF] HTTP POST /api/auth/login responded 200 in 4653.5337 ms
+[13:12:09 INF] HTTP GET /api/workorders responded 401 in 6.2207 ms
+[13:12:16 INF] User 1 logged in.
+[13:12:16 INF] HTTP POST /api/auth/login responded 200 in 176.1111 ms
+[13:12:23 INF] User 1 logged in.
+[13:12:23 INF] HTTP POST /api/auth/login responded 200 in 160.0789 ms
+[13:12:23 INF] HTTP GET /api/workorders responded 401 in 0.7647 ms
+[13:12:34 INF] User 1 logged in.
+[13:12:34 INF] HTTP POST /api/auth/login responded 200 in 132.8215 ms
+[13:12:34 ERR] An exception occurred while iterating over the results of a query for context type 'ModelProject.Data.ApplicationDbContext'.
+System.InvalidOperationException: Cannot convert string value 'OnHold' from the database to any value in the mapped 'WorkOrderStatus' enum.
+   at Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal.StringEnumConverter`3.ConvertToEnum(String value)
+   at lambda_method188(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: Cannot convert string value 'OnHold' from the database to any value in the mapped 'WorkOrderStatus' enum.
+   at Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal.StringEnumConverter`3.ConvertToEnum(String value)
+   at lambda_method188(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+[13:12:34 ERR] HTTP GET /api/workorders responded 500 in 187.3597 ms
+System.InvalidOperationException: Cannot convert string value 'OnHold' from the database to any value in the mapped 'WorkOrderStatus' enum.
+   at Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal.StringEnumConverter`3.ConvertToEnum(String value)
+   at lambda_method188(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ModelProject.Services.WorkOrders.WorkOrderService.GetListAsync(WorkOrderQueryParameters query, CancellationToken cancellationToken) in D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject\Services\WorkOrders\WorkOrderService.cs:line 77
+   at ModelProject.Controllers.WorkOrdersController.GetList(WorkOrderQueryParameters query, CancellationToken cancellationToken) in D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject\Controllers\WorkOrdersController.cs:line 26
+   at lambda_method167(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[13:12:34 ERR] Unhandled exception while processing GET /api/workorders
+System.InvalidOperationException: Cannot convert string value 'OnHold' from the database to any value in the mapped 'WorkOrderStatus' enum.
+   at Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal.StringEnumConverter`3.ConvertToEnum(String value)
+   at lambda_method188(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ModelProject.Services.WorkOrders.WorkOrderService.GetListAsync(WorkOrderQueryParameters query, CancellationToken cancellationToken) in D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject\Services\WorkOrders\WorkOrderService.cs:line 77
+   at ModelProject.Controllers.WorkOrdersController.GetList(WorkOrderQueryParameters query, CancellationToken cancellationToken) in D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject\Controllers\WorkOrdersController.cs:line 26
+   at lambda_method167(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at ModelProject.Common.Middleware.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject\Common\Middleware\ExceptionHandlingMiddleware.cs:line 24
+[13:14:21 INF] HTTP OPTIONS /api/technicians responded 204 in 2.6080 ms
+[13:14:21 INF] HTTP OPTIONS /api/workorders responded 204 in 2.2408 ms
+[13:14:21 INF] HTTP OPTIONS /api/workorders responded 204 in 2.0394 ms
+[13:14:21 INF] HTTP OPTIONS /api/workorders responded 204 in 2.6134 ms
+[13:14:21 INF] HTTP OPTIONS /api/workorders responded 204 in 2.6233 ms
+[13:14:21 INF] HTTP OPTIONS /api/technicians responded 204 in 2.4251 ms
+[13:14:21 INF] HTTP GET /api/workorders responded 200 in 54.1893 ms
+[13:14:21 INF] HTTP GET /api/workorders responded 200 in 54.1288 ms
+[13:14:21 INF] HTTP GET /api/technicians responded 200 in 56.9104 ms
+[13:14:21 INF] HTTP GET /api/technicians responded 200 in 3.0488 ms
+[13:14:21 INF] HTTP GET /api/workorders responded 200 in 5.9995 ms
+[13:14:21 INF] HTTP GET /api/workorders responded 200 in 6.0087 ms
+[13:14:23 INF] HTTP OPTIONS /api/facilities responded 204 in 0.1523 ms
+[13:14:23 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0573 ms
+[13:14:23 INF] HTTP GET /api/workorders responded 200 in 13.3157 ms
+[13:14:23 INF] HTTP GET /api/workorders responded 200 in 5.6380 ms
+[13:14:23 INF] HTTP GET /api/facilities responded 200 in 26.8774 ms
+[13:14:23 INF] HTTP GET /api/facilities responded 200 in 4.7580 ms
+[13:16:44 INF] HTTP OPTIONS /api/workorders responded 204 in 0.9917 ms
+[13:16:44 INF] HTTP GET /api/workorders responded 200 in 53.4610 ms
+[13:16:53 INF] HTTP OPTIONS /api/workorders responded 204 in 0.4146 ms
+[13:16:54 INF] HTTP GET /api/workorders responded 200 in 33.5603 ms
+[13:16:57 INF] HTTP OPTIONS /api/workorders responded 204 in 0.2341 ms
+[13:16:57 INF] HTTP GET /api/workorders responded 200 in 40.8821 ms
+[13:17:10 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1852 ms
+[13:17:10 INF] HTTP GET /api/workorders responded 200 in 19.8814 ms
+[13:17:13 INF] HTTP OPTIONS /api/workorders responded 204 in 0.7938 ms
+[13:17:13 INF] HTTP GET /api/workorders responded 200 in 17.3161 ms
+[13:17:17 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1501 ms
+[13:17:17 INF] HTTP GET /api/workorders responded 200 in 16.5797 ms
+[13:17:21 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1435 ms
+[13:17:21 INF] HTTP GET /api/workorders responded 200 in 15.3939 ms
+[13:17:24 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1527 ms
+[13:17:24 INF] HTTP GET /api/workorders responded 200 in 17.6232 ms
+[13:17:26 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1648 ms
+[13:17:26 INF] HTTP GET /api/workorders responded 200 in 11.9833 ms
+[13:17:28 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0966 ms
+[13:17:28 INF] HTTP GET /api/workorders responded 200 in 13.1455 ms
+[13:17:34 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1068 ms
+[13:17:34 INF] HTTP GET /api/workorders responded 200 in 13.0724 ms
+[13:17:41 INF] User 1 logged in.
+[13:17:41 INF] HTTP POST /api/auth/login responded 200 in 151.7775 ms
+[13:17:41 INF] HTTP GET /api/workorders responded 200 in 11.9509 ms
+[13:18:01 INF] HTTP OPTIONS /api/workorders responded 204 in 0.3511 ms
+[13:18:01 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1971 ms
+[13:18:01 INF] HTTP OPTIONS /api/technicians responded 204 in 0.1021 ms
+[13:18:01 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1427 ms
+[13:18:01 INF] HTTP OPTIONS /api/technicians responded 204 in 0.0845 ms
+[13:18:01 INF] HTTP GET /api/technicians responded 200 in 26.3177 ms
+[13:18:01 INF] HTTP GET /api/workorders responded 200 in 45.7299 ms
+[13:18:01 INF] HTTP GET /api/workorders responded 200 in 32.8479 ms
+[13:18:01 INF] HTTP GET /api/technicians responded 200 in 8.1541 ms
+[13:18:01 INF] HTTP GET /api/workorders responded 200 in 16.5024 ms
+[13:18:01 INF] HTTP GET /api/workorders responded 200 in 13.6575 ms
+[13:18:04 INF] HTTP OPTIONS /api/facilities responded 204 in 0.6456 ms
+[13:18:04 INF] HTTP OPTIONS /api/workorders responded 204 in 0.7710 ms
+[13:18:04 INF] HTTP OPTIONS /api/facilities responded 204 in 0.7710 ms
+[13:18:04 INF] HTTP OPTIONS /api/workorders responded 204 in 0.3867 ms
+[13:18:05 INF] HTTP GET /api/facilities responded 200 in 11.1936 ms
+[13:18:05 INF] HTTP GET /api/facilities responded 200 in 3.1548 ms
+[13:18:05 INF] HTTP GET /api/workorders responded 200 in 18.1215 ms
+[13:18:05 INF] HTTP GET /api/workorders responded 200 in 9.5553 ms
+[13:18:11 INF] HTTP OPTIONS /api/workorders responded 204 in 0.2365 ms
+[13:18:11 INF] HTTP GET /api/workorders responded 200 in 62.7131 ms
+[13:18:25 INF] HTTP OPTIONS /api/workorders responded 204 in 0.2725 ms
+[13:18:25 INF] HTTP GET /api/workorders responded 200 in 12.0382 ms
+[13:18:29 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1114 ms
+[13:18:29 INF] HTTP GET /api/workorders responded 200 in 13.9536 ms
+[13:18:48 INF] HTTP OPTIONS /api/facilities responded 204 in 0.4306 ms
+[13:18:48 INF] HTTP OPTIONS /api/technicians responded 204 in 0.1391 ms
+[13:18:48 INF] HTTP OPTIONS /api/facilities responded 204 in 0.1773 ms
+[13:18:48 INF] HTTP OPTIONS /api/workorders/93 responded 204 in 0.2968 ms
+[13:18:48 INF] HTTP OPTIONS /api/workorders/93 responded 204 in 0.0968 ms
+[13:18:48 INF] HTTP OPTIONS /api/technicians responded 204 in 0.1598 ms
+[13:18:48 INF] HTTP GET /api/facilities responded 200 in 16.6849 ms
+[13:18:48 INF] HTTP GET /api/technicians responded 200 in 15.9059 ms
+[13:18:48 INF] HTTP GET /api/facilities responded 200 in 3.4593 ms
+[13:18:48 INF] HTTP GET /api/technicians responded 200 in 3.7120 ms
+[13:18:48 INF] HTTP GET /api/workorders/93 responded 200 in 97.2520 ms
+[13:18:48 INF] HTTP GET /api/workorders/93 responded 200 in 9.3065 ms
+[13:18:48 INF] HTTP OPTIONS /api/assets responded 204 in 0.1705 ms
+[13:18:48 INF] HTTP GET /api/assets responded 200 in 78.4974 ms
+[13:18:55 INF] HTTP OPTIONS /api/workorders/93 responded 204 in 1.2109 ms
+[13:18:55 INF] HTTP PUT /api/workorders/93 responded 200 in 212.4767 ms
+[13:18:58 INF] HTTP OPTIONS /api/facilities responded 204 in 0.1375 ms
+[13:18:58 INF] HTTP OPTIONS /api/workorders responded 204 in 0.2896 ms
+[13:18:58 INF] HTTP OPTIONS /api/facilities responded 204 in 0.0587 ms
+[13:18:58 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0481 ms
+[13:18:58 INF] HTTP GET /api/facilities responded 200 in 8.8939 ms
+[13:18:58 INF] HTTP GET /api/facilities responded 200 in 4.1248 ms
+[13:18:58 INF] HTTP GET /api/workorders responded 200 in 18.8576 ms
+[13:18:58 INF] HTTP GET /api/workorders responded 200 in 9.5261 ms
+[13:19:11 INF] HTTP OPTIONS /api/workorders/93 responded 204 in 0.1131 ms
+[13:19:11 INF] Work order 93 deleted.
+[13:19:11 INF] HTTP DELETE /api/workorders/93 responded 204 in 77.0571 ms
+[13:19:11 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1012 ms
+[13:19:11 INF] HTTP GET /api/workorders responded 200 in 18.9242 ms
+[13:19:27 INF] HTTP OPTIONS /api/workorders responded 204 in 0.4092 ms
+[13:19:27 INF] HTTP OPTIONS /api/technicians responded 204 in 0.2422 ms
+[13:19:27 INF] HTTP OPTIONS /api/workorders responded 204 in 0.3115 ms
+[13:19:27 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1040 ms
+[13:19:27 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0421 ms
+[13:19:27 INF] HTTP GET /api/technicians responded 200 in 5.5754 ms
+[13:19:27 INF] HTTP GET /api/technicians responded 200 in 3.2155 ms
+[13:19:27 INF] HTTP GET /api/workorders responded 200 in 13.0842 ms
+[13:19:27 INF] HTTP GET /api/workorders responded 200 in 15.5025 ms
+[13:19:27 INF] HTTP GET /api/workorders responded 200 in 9.1019 ms
+[13:19:27 INF] HTTP GET /api/workorders responded 200 in 8.1026 ms
+[13:23:14 INF] HTTP GET /swagger/index.html responded 401 in 42.1653 ms
+[13:23:27 INF] HTTP GET /swagger/index.html responded 401 in 2.4817 ms
+[13:23:44 INF] HTTP GET /swagger/index.html responded 401 in 3.6314 ms
+[13:23:51 INF] HTTP GET /swagger/index.html responded 401 in 0.5562 ms
+[13:25:30 INF] HTTP OPTIONS /api/workorders responded 204 in 10.2186 ms
+[13:25:30 INF] HTTP OPTIONS /api/technicians responded 204 in 10.2768 ms
+[13:25:30 INF] HTTP OPTIONS /api/workorders responded 204 in 10.2176 ms
+[13:25:30 INF] HTTP OPTIONS /api/workorders responded 204 in 10.2756 ms
+[13:25:30 INF] HTTP OPTIONS /api/technicians responded 204 in 10.3189 ms
+[13:25:30 INF] HTTP OPTIONS /api/workorders responded 204 in 10.2380 ms
+[13:25:30 INF] HTTP GET /api/technicians responded 200 in 190.1577 ms
+[13:25:30 INF] HTTP GET /api/technicians responded 200 in 8.0701 ms
+[13:25:30 INF] HTTP GET /api/workorders responded 200 in 214.7879 ms
+[13:25:30 INF] HTTP GET /api/workorders responded 200 in 214.7748 ms
+[13:25:30 INF] HTTP GET /api/workorders responded 200 in 14.9639 ms
+[13:25:30 INF] HTTP GET /api/workorders responded 200 in 14.9640 ms
+[13:25:33 INF] HTTP GET /api/technicians responded 200 in 12.5808 ms
+[13:25:33 INF] HTTP GET /api/workorders responded 200 in 21.0095 ms
+[13:25:33 INF] HTTP GET /api/workorders responded 200 in 20.9885 ms
+[13:25:33 INF] HTTP GET /api/technicians responded 200 in 8.7277 ms
+[13:25:33 INF] HTTP GET /api/workorders responded 200 in 11.3436 ms
+[13:25:33 INF] HTTP GET /api/workorders responded 200 in 12.9481 ms
+[13:25:35 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0754 ms
+[13:25:35 INF] HTTP OPTIONS /api/facilities responded 204 in 0.1694 ms
+[13:25:35 INF] HTTP GET /api/facilities responded 200 in 9.9559 ms
+[13:25:35 INF] HTTP GET /api/workorders responded 200 in 12.7688 ms
+[13:25:35 INF] HTTP GET /api/facilities responded 200 in 3.4704 ms
+[13:25:35 INF] HTTP GET /api/workorders responded 200 in 4.7521 ms
+[13:25:39 INF] HTTP OPTIONS /api/workorders/121 responded 204 in 0.1491 ms
+[13:25:39 INF] HTTP OPTIONS /api/technicians responded 204 in 0.1489 ms
+[13:25:39 INF] HTTP OPTIONS /api/workorders/121 responded 204 in 0.0685 ms
+[13:25:39 INF] HTTP OPTIONS /api/technicians responded 204 in 0.0461 ms
+[13:25:39 INF] HTTP GET /api/facilities responded 200 in 21.2331 ms
+[13:25:39 INF] HTTP GET /api/technicians responded 200 in 22.8462 ms
+[13:25:39 INF] HTTP GET /api/facilities responded 200 in 13.8748 ms
+[13:25:39 INF] HTTP GET /api/workorders/121 responded 200 in 35.9768 ms
+[13:25:39 INF] HTTP GET /api/technicians responded 200 in 11.6646 ms
+[13:25:39 INF] HTTP GET /api/workorders/121 responded 200 in 14.0987 ms
+[13:25:39 INF] HTTP OPTIONS /api/assets responded 204 in 0.1519 ms
+[13:25:39 INF] HTTP GET /api/assets responded 200 in 19.2698 ms
+[13:25:43 INF] HTTP OPTIONS /api/facilities responded 204 in 0.1500 ms
+[13:25:43 INF] HTTP OPTIONS /api/facilities responded 204 in 0.0870 ms
+[13:25:43 INF] HTTP GET /api/technicians responded 200 in 13.2899 ms
+[13:25:43 INF] HTTP GET /api/facilities responded 200 in 13.2341 ms
+[13:25:43 INF] HTTP GET /api/workorders/121 responded 200 in 35.4164 ms
+[13:25:43 INF] HTTP GET /api/technicians responded 200 in 19.8268 ms
+[13:25:43 INF] HTTP GET /api/facilities responded 200 in 30.6538 ms
+[13:25:43 INF] HTTP GET /api/workorders/121 responded 200 in 29.3675 ms
+[13:25:43 INF] HTTP GET /api/assets responded 200 in 22.3960 ms
+[13:25:44 INF] HTTP OPTIONS /api/technicians responded 204 in 0.1068 ms
+[13:25:44 INF] HTTP OPTIONS /api/workorders/121 responded 204 in 0.1063 ms
+[13:25:44 INF] HTTP OPTIONS /api/technicians responded 204 in 0.0774 ms
+[13:25:44 INF] HTTP OPTIONS /api/workorders/121 responded 204 in 0.0959 ms
+[13:25:44 INF] HTTP GET /api/technicians responded 200 in 12.9152 ms
+[13:25:44 INF] HTTP GET /api/facilities responded 200 in 36.2356 ms
+[13:25:44 INF] HTTP GET /api/workorders/121 responded 200 in 32.6889 ms
+[13:25:44 INF] HTTP GET /api/technicians responded 200 in 11.2890 ms
+[13:25:44 INF] HTTP GET /api/facilities responded 200 in 5.1911 ms
+[13:25:44 INF] HTTP GET /api/workorders/121 responded 200 in 5.2266 ms
+[13:25:44 INF] HTTP OPTIONS /api/assets responded 204 in 0.1453 ms
+[13:25:44 INF] HTTP GET /api/assets responded 200 in 15.6100 ms
+[13:25:47 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1076 ms
+[13:25:47 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0988 ms
+[13:25:47 INF] HTTP GET /api/facilities responded 200 in 12.0046 ms
+[13:25:47 INF] HTTP GET /api/facilities responded 200 in 4.2889 ms
+[13:25:47 INF] HTTP GET /api/workorders responded 200 in 18.2787 ms
+[13:25:47 INF] HTTP GET /api/workorders responded 200 in 11.6116 ms
+[13:26:02 INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1619 ms
+[13:26:03 INF] User 1 logged in.
+[13:26:03 INF] HTTP POST /api/auth/login responded 200 in 273.2123 ms
+[13:26:03 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1242 ms
+[13:26:03 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0458 ms
+[13:26:03 INF] HTTP OPTIONS /api/technicians responded 204 in 0.0543 ms
+[13:26:03 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0543 ms
+[13:26:03 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1110 ms
+[13:26:03 INF] HTTP GET /api/technicians responded 200 in 6.6697 ms
+[13:26:03 INF] HTTP GET /api/workorders responded 200 in 14.2790 ms
+[13:26:03 INF] HTTP GET /api/workorders responded 200 in 14.2658 ms
+[13:26:03 INF] HTTP GET /api/technicians responded 200 in 7.1859 ms
+[13:26:03 INF] HTTP GET /api/workorders responded 200 in 8.6257 ms
+[13:26:03 INF] HTTP GET /api/workorders responded 200 in 8.5625 ms
+[13:27:15 INF] HTTP GET /swagger/index.html responded 401 in 2.8728 ms
+[13:27:42 INF] HTTP OPTIONS /api/auth/login responded 204 in 1.2436 ms
+[13:27:43 WRN] Failed login attempt for username 'admin'.
+[13:27:43 ERR] HTTP POST /api/auth/login responded 500 in 201.0952 ms
+ModelProject.Common.Exceptions.UnauthorizedException: Invalid username or password.
+   at ModelProject.Services.Auth.AuthService.LoginAsync(LoginRequestDto dto, CancellationToken cancellationToken) in D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject\Services\Auth\AuthService.cs:line 32
+   at ModelProject.Controllers.AuthController.Login(LoginRequestDto dto, CancellationToken cancellationToken) in D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject\Controllers\AuthController.cs:line 28
+   at lambda_method5(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+[13:27:43 WRN] Handled exception (401) while processing POST /api/auth/login: Invalid username or password.
+ModelProject.Common.Exceptions.UnauthorizedException: Invalid username or password.
+   at ModelProject.Services.Auth.AuthService.LoginAsync(LoginRequestDto dto, CancellationToken cancellationToken) in D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject\Services\Auth\AuthService.cs:line 32
+   at ModelProject.Controllers.AuthController.Login(LoginRequestDto dto, CancellationToken cancellationToken) in D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject\Controllers\AuthController.cs:line 28
+   at lambda_method5(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at ModelProject.Common.Middleware.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in D:\ModelProject\ModelProject-Server\ModelProjectServer\ModelProject\Common\Middleware\ExceptionHandlingMiddleware.cs:line 24
+[13:27:47 INF] User 1 logged in.
+[13:27:47 INF] HTTP POST /api/auth/login responded 200 in 223.6093 ms
+[13:27:47 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0975 ms
+[13:27:47 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0929 ms
+[13:27:47 INF] HTTP OPTIONS /api/technicians responded 204 in 0.0797 ms
+[13:27:47 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0331 ms
+[13:27:47 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0534 ms
+[13:27:47 INF] HTTP GET /api/technicians responded 200 in 16.7489 ms
+[13:27:47 INF] HTTP GET /api/workorders responded 200 in 28.1056 ms
+[13:27:47 INF] HTTP GET /api/workorders responded 200 in 28.1049 ms
+[13:27:47 INF] HTTP GET /api/technicians responded 200 in 10.7685 ms
+[13:27:47 INF] HTTP GET /api/workorders responded 200 in 8.8131 ms
+[13:27:47 INF] HTTP GET /api/workorders responded 200 in 8.8131 ms
+[13:27:50 INF] HTTP OPTIONS /api/facilities responded 204 in 5.2451 ms
+[13:27:50 INF] HTTP OPTIONS /api/facilities responded 204 in 0.1108 ms
+[13:27:50 INF] HTTP OPTIONS /api/workorders responded 204 in 4.5150 ms
+[13:27:50 INF] HTTP OPTIONS /api/workorders responded 204 in 3.4193 ms
+[13:27:50 INF] HTTP GET /api/workorders responded 200 in 55.6259 ms
+[13:27:50 INF] HTTP GET /api/facilities responded 200 in 60.2672 ms
+[13:27:50 INF] HTTP GET /api/facilities responded 200 in 21.5071 ms
+[13:27:50 INF] HTTP GET /api/workorders responded 200 in 35.1370 ms
+[13:27:55 INF] HTTP OPTIONS /api/workorders/121 responded 204 in 0.0429 ms
+[13:27:55 INF] HTTP OPTIONS /api/technicians responded 204 in 0.2089 ms
+[13:27:55 INF] HTTP OPTIONS /api/technicians responded 204 in 0.2386 ms
+[13:27:55 INF] HTTP OPTIONS /api/workorders/121 responded 204 in 0.2433 ms
+[13:27:55 INF] HTTP GET /api/facilities responded 200 in 7.1820 ms
+[13:27:55 INF] HTTP GET /api/technicians responded 200 in 5.0730 ms
+[13:27:55 INF] HTTP GET /api/facilities responded 200 in 5.4164 ms
+[13:27:55 INF] HTTP GET /api/technicians responded 200 in 4.0056 ms
+[13:27:55 INF] HTTP GET /api/workorders/121 responded 200 in 17.5644 ms
+[13:27:55 INF] HTTP GET /api/workorders/121 responded 200 in 3.2668 ms
+[13:27:55 INF] HTTP OPTIONS /api/assets responded 204 in 0.1017 ms
+[13:27:55 INF] HTTP GET /api/assets responded 200 in 20.3077 ms
+[13:27:59 INF] HTTP OPTIONS /api/workorders/121 responded 204 in 0.1417 ms
+[13:27:59 INF] HTTP PUT /api/workorders/121 responded 200 in 48.5809 ms
+[13:28:03 INF] HTTP OPTIONS /api/facilities responded 204 in 0.2752 ms
+[13:28:03 INF] HTTP OPTIONS /api/workorders responded 204 in 0.0870 ms
+[13:28:03 INF] HTTP OPTIONS /api/facilities responded 204 in 0.0817 ms
+[13:28:03 INF] HTTP OPTIONS /api/workorders responded 204 in 0.1844 ms
+[13:28:03 INF] HTTP GET /api/facilities responded 200 in 11.0334 ms
+[13:28:03 INF] HTTP GET /api/facilities responded 200 in 5.3717 ms
+[13:28:03 INF] HTTP GET /api/workorders responded 200 in 23.7851 ms
+[13:28:03 INF] HTTP GET /api/workorders responded 200 in 9.4035 ms
+[13:29:14 INF] HTTP GET /swagger/index.html responded 401 in 98.7526 ms
+[13:29:59 INF] HTTP GET /swagger/index.html responded 401 in 1321.1736 ms
+[13:30:43 INF] HTTP GET /swagger/index.html responded 401 in 0.8978 ms
+[13:31:24 INF] HTTP GET /swagger/index.html responded 401 in 93.2616 ms
+[13:31:50 INF] HTTP GET /swagger/index.html responded 401 in 12.8308 ms
+[13:32:09 INF] HTTP GET /swagger/index.html responded 401 in 3.5763 ms
+[13:36:34 INF] HTTP GET /swagger/index.html responded 401 in 41.1000 ms
+[13:37:49 WRN] As of "09/20/2026 08:07:49 +00:00", the heartbeat has been running for "00:00:02.6086362" which is longer than "00:00:01". This could be caused by thread pool starvation.
+[13:37:54 INF] HTTP GET /swagger/index.html responded 401 in 57.3463 ms
